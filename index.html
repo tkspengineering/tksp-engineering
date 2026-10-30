@@ -1,0 +1,329 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>TKSP Engineering</title>
+<style>
+/* Layout: single column, full-width service bands, a clear hierarchy from hero to contact. */
+:root {
+  --bg: #e6edf5;
+  --surface: #f4f7fb;
+  --fg: #1b2a3c;
+  --muted: #4f6176;
+  --line: #c6d2e0;
+  --accent: #d9702b;
+  --accent-ink: #ffffff;
+  --dark: #1f3f66;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101614;
+    --surface: #18211e;
+    --fg: #ecefe9;
+    --muted: #a3aea8;
+    --line: #2b3733;
+    --accent: #e0834f;
+    --accent-ink: #101614;
+    --dark: #0b1210;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101614;
+  --surface: #18211e;
+  --fg: #ecefe9;
+  --muted: #a3aea8;
+  --line: #2b3733;
+  --accent: #e0834f;
+  --accent-ink: #101614;
+  --dark: #0b1210;
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+}
+h1, h2, h3 { text-wrap: balance; font-family: "Source Serif 4", Georgia, serif; font-weight: 600; line-height: 1.2; margin: 0 0 12px; }
+h1 { font-size: clamp(2rem, 6vw, 3.2rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 12px; max-width: 65ch; }
+a { color: var(--accent); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 0; }
+.eyebrow { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 10px; }
+section { padding-block: 56px; }
+.band { background: var(--surface); border-block: 1px solid var(--line); }
+.band--dark { background: var(--dark); color: #e9efeb; border-color: transparent; }
+.band--dark .eyebrow { color: #f0a078; }
+.band--dark p { color: #b9c6bf; }
+
+/* Top header */
+header.top {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding-block: 16px; border-bottom: 1px solid var(--line);
+}
+.brand { font-family: "Source Serif 4", Georgia, serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.04em; }
+.brand small { display: block; font-family: "IBM Plex Sans", sans-serif; font-weight: 400; font-size: 0.72rem; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; }
+nav { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.9rem; }
+nav a { color: var(--fg); text-decoration: none; }
+nav a:hover, nav a:focus-visible { color: var(--accent); text-decoration: underline; }
+
+/* Hero */
+.hero { padding-block: 64px 56px; }
+.hero .lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.btn {
+  display: inline-block; padding: 12px 20px; border-radius: 4px; text-decoration: none;
+  font-weight: 600; border: 1px solid var(--accent); font-size: 0.95rem;
+}
+.btn--solid { background: var(--accent); color: var(--accent-ink); }
+.btn--ghost { color: var(--accent); background: transparent; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 40px; }
+.stat { border-top: 2px solid var(--accent); padding-top: 12px; }
+.stat strong { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 1.6rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.85rem; color: var(--muted); }
+
+/* Services */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 28px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 22px; min-width: 0; }
+.card ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+.card li { margin-bottom: 6px; }
+.card .tag { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+
+/* Process */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; margin-top: 28px; border-top: 1px solid var(--line); }
+.step { padding: 22px 20px 0 0; min-width: 0; }
+.step .n { font-family: "Source Serif 4", Georgia, serif; font-size: 1.4rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin-top: 24px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+
+/* Two column text */
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; align-items: start; }
+.list-plain { list-style: none; padding: 0; margin: 0; }
+.list-plain li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.list-plain li:last-child { border-bottom: 0; }
+.list-plain b { display: block; font-weight: 600; }
+
+/* Advantage */
+.adv { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 28px; }
+.adv div { border-top: 2px solid var(--accent); padding-top: 14px; }
+.adv strong { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 1.8rem; color: var(--accent); font-weight: 600; }
+.adv span { color: var(--muted); font-size: 0.92rem; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 24px; }
+.addr { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; min-width: 0; }
+.addr h3 { font-size: 1rem; }
+.addr p { font-size: 0.95rem; color: var(--muted); margin: 0; }
+.phone { font-variant-numeric: tabular-nums; }
+
+footer { padding-block: 28px; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); }
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a href="#" class="brand" aria-label="TKSP Engineering home"><img src="logo.jpg" alt="TKSP Engineering logo" style="height:56px;width:auto;max-width:100%;display:block"></a>
+    <nav aria-label="Sections">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#electrical">Electrical</a>
+      <a href="#pump">Pump rooms</a>
+      <a href="#solar">Solar</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">MEP &amp; EPC contractor</p>
+    <h1>Turnkey electrical, pump room and solar infrastructure</h1>
+    <p class="lead">TKSP Engineering delivers end-to-end utility and electrical infrastructure for industrial, commercial and residential projects, from load calculation through to commissioning and statutory approvals.</p>
+    <div class="cta-row">
+      <a class="btn btn--solid" href="#contact">Request a quote</a>
+      <a class="btn btn--ghost" href="#services">View services</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>360&deg;</strong><span>Single-window MEP scope</span></div>
+      <div class="stat"><strong>IER &amp; NBC</strong><span>Indian Electricity Rules and National Building Code</span></div>
+      <div class="stat"><strong>ISO / ISI</strong><span>Certified material quality</span></div>
+      <div class="stat"><strong>Turnkey</strong><span>Design to commissioning</span></div>
+    </div>
+  </section>
+
+  <section id="about" class="band">
+    <div class="wrap" style="padding-block:0">
+      <p class="eyebrow">About us</p>
+      <h2>Engineering excellence and reliability</h2>
+      <p>TKSP is a premier MEP contracting firm. We deliver complete design-to-commissioning execution, with strict safety and statutory compliance and dedicated engineering project management for timely handover.</p>
+      <div class="split" style="margin-top:28px">
+        <div>
+          <h3>Our vision</h3>
+          <p>To be a trusted leader in MEP contracting, recognized for reliable infrastructure readiness.</p>
+        </div>
+        <div>
+          <h3>Our mission</h3>
+          <ul class="list-plain">
+            <li><b>Safe execution</b>Compliant MEP and solar installations.</li>
+            <li><b>Client satisfaction</b>Superior workmanship and timely delivery.</li>
+            <li><b>Energy efficiency</b>Modern practices for operational reliability.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <p class="eyebrow">Core services</p>
+    <h2>What we deliver</h2>
+    <div class="grid">
+      <article class="card">
+        <span class="tag">Electrical</span>
+        <h3 style="margin-top:8px">HT / LT electricals</h3>
+        <p>Transformers and switchgear panels, from erection to testing.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Mechanical</span>
+        <h3 style="margin-top:8px">Pump room setup</h3>
+        <p>Firefighting and hydro-pneumatic systems.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Infrastructure</span>
+        <h3 style="margin-top:8px">MEP readiness</h3>
+        <p>End-to-end industrial utility infrastructure.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Renewables</span>
+        <h3 style="margin-top:8px">Solar power EPC</h3>
+        <p>Rooftop and ground-mounted solar systems.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="process" class="band">
+    <div class="wrap" style="padding-block:0">
+      <p class="eyebrow">Methodology</p>
+      <h2>Turnkey EPC execution process</h2>
+      <p>Each project follows four stages, from the first load calculation to statutory sign-off.</p>
+      <div class="steps">
+        <div class="step"><div class="n">01</div><h3>Engineering design</h3><p>Load calculation and layout planning.</p></div>
+        <div class="step"><div class="n">02</div><h3>Procurement</h3><p>Certified industrial equipment sourcing.</p></div>
+        <div class="step"><div class="n">03</div><h3>Site installation</h3><p>Safe erection and cabling works.</p></div>
+        <div class="step"><div class="n">04</div><h3>Commissioning</h3><p>Testing and statutory approvals.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="electrical">
+    <p class="eyebrow">High-voltage infrastructure</p>
+    <h2>Transformer and substation works</h2>
+    <div class="split">
+      <ul class="list-plain">
+        <li><b>Power transformers</b>Oil-cooled and dry-type unit erection.</li>
+        <li><b>Substation setup</b>Outdoor and indoor yard construction.</li>
+        <li><b>Testing and filtration</b>Oil BDV testing and relay calibration.</li>
+        <li><b>Safety earthing</b>Chemical earthing and lightning arresters.</li>
+      </ul>
+      <div class="table-wrap" style="margin-top:0">
+        <table>
+          <thead><tr><th>System</th><th>Equipment</th><th>Scope</th></tr></thead>
+          <tbody>
+            <tr><td>HT switchgear</td><td>11kV / 33kV VCB, SF6, RMU</td><td>Erection, HT termination, testing</td></tr>
+            <tr><td>LT main panels</td><td>PCC, MCC, AMF and sync panels</td><td>Supply, installation, busducting</td></tr>
+            <tr><td>Power quality</td><td>APFC and harmonic filter panels</td><td>Power factor optimization setup</td></tr>
+            <tr><td>Cabling and distribution</td><td>Armoured cables, trays, DBs</td><td>Trenching, laying, glanding</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="pump" class="band">
+    <div class="wrap" style="padding-block:0">
+      <p class="eyebrow">Mechanical and plumbing</p>
+      <h2>Pump room and utility systems</h2>
+      <p>Turnkey pumping stations built to fire-safety and domestic water requirements.</p>
+      <div class="grid">
+        <div class="card"><h3>Firefighting pumps</h3><p>Hydrant, sprinkler, jockey and diesel pumps.</p></div>
+        <div class="card"><h3>Water distribution</h3><p>Hydro-pneumatic and domestic transfer systems.</p></div>
+        <div class="card"><h3>Piping and valves</h3><p>MS and GI headers, PRVs and motorized actuators.</p></div>
+        <div class="card"><h3>Automation</h3><p>Pressure transmitters and VFD control panels.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="integrated">
+    <p class="eyebrow">Integrated infrastructure</p>
+    <h2>Complete MEP infrastructure readiness</h2>
+    <div class="grid">
+      <div class="card"><h3>Industrial and warehouse plants</h3><p>Power distribution and utility piping networks.</p></div>
+      <div class="card"><h3>Commercial and institutional</h3><p>Coordinated electrical, firefighting and plumbing.</p></div>
+      <div class="card"><h3>Fire and life safety</h3><p>NBC-compliant hydrant and sprinkler readiness.</p></div>
+      <div class="card"><h3>Internal and external lighting</h3><p>High-bay industrial LED and street lighting.</p></div>
+    </div>
+  </section>
+
+  <section id="solar" class="band--dark" style="background:var(--dark)">
+    <div class="wrap" style="padding-block:0">
+      <p class="eyebrow">Renewable energy</p>
+      <h2 style="color:#ecf2ee">Solar power system EPC</h2>
+      <p>Sustainable clean energy solutions for rooftop and ground-mounted plants.</p>
+      <div class="grid" style="margin-top:28px">
+        <div class="card" style="background:#2a4d75;border-color:#3d6491"><h3 style="color:#ecf2ee">On-grid, off-grid and hybrid</h3><p>Rooftop and ground solar PV plants.</p></div>
+        <div class="card" style="background:#2a4d75;border-color:#3d6491"><h3 style="color:#ecf2ee">Module mounting</h3><p>Wind-resistant galvanized structure erection.</p></div>
+        <div class="card" style="background:#2a4d75;border-color:#3d6491"><h3 style="color:#ecf2ee">Power conditioning</h3><p>String and central inverters, with ACDB and DCDB setup.</p></div>
+        <div class="card" style="background:#2a4d75;border-color:#3d6491"><h3 style="color:#ecf2ee">Grid integration</h3><p>Net metering and DISCOM synchronization.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="advantage">
+    <p class="eyebrow">The TKSP advantage</p>
+    <h2>Why partner with us</h2>
+    <div class="adv" style="background:transparent">
+      <div><strong>100%</strong><span>Safety and code compliance</span></div>
+      <div><strong>360&deg;</strong><span>Single-window MEP scope</span></div>
+      <div><strong>ISO/ISI</strong><span>Certified material quality</span></div>
+      <div><strong>On-time</strong><span>Scheduled project handover</span></div>
+    </div>
+  </section>
+
+  <section id="contact" class="band">
+    <div class="wrap" style="padding-block:0">
+      <p class="eyebrow">Contact</p>
+      <h2>Let's build together</h2>
+      <p>Speak with our director about your electrical, pump room or solar requirement.</p>
+      <div class="contact-grid">
+        <div class="addr">
+          <h3>Director</h3>
+          <p><strong style="color:var(--fg)">Surya Pratap Singh</strong></p>
+          <p class="phone">+91 9506606397<br>+91 9369750317</p>
+          <p><a href="mailto:tkspengineering@yahoo.com">tkspengineering@yahoo.com</a></p>
+        </div>
+        <div class="addr">
+          <h3>Corporate and branch office</h3>
+          <p>Beta 2, Greater Noida<br>Gautam Budh Nagar, UP 201306</p>
+        </div>
+        <div class="addr">
+          <h3>Registered office</h3>
+          <p>Ground Floor, Khata No. 0091, Khasra No. 27<br>Pipara Patti, Bahorapur, Ballia, UP 221709</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin:0">&copy; TKSP Engineering. Website: <a href="https://www.tkspengineering.com">www.tkspengineering.com</a></p>
+  </footer>
+</div>

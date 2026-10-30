@@ -128,6 +128,13 @@ tr:last-child td { border-bottom: 0; }
 .addr p { font-size: 0.95rem; color: var(--muted); margin: 0; }
 .phone { font-variant-numeric: tabular-nums; }
 
+.inquiry { display: grid; gap: 8px; margin-top: 24px; max-width: 560px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 24px; }
+.inquiry label { font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-top: 8px; }
+.inquiry input, .inquiry textarea { font: inherit; width: 100%; box-sizing: border-box; padding: 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--fg); }
+.inquiry textarea { resize: vertical; min-height: 140px; }
+.inquiry button { margin-top: 12px; cursor: pointer; font: inherit; font-weight: 600; }
+.iq-msg { font-size: 0.9rem; color: var(--muted); margin: 8px 0 0; min-height: 1.2em; }
+
 footer { padding-block: 28px; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
@@ -299,16 +306,33 @@ footer { padding-block: 28px; font-size: 0.85rem; color: var(--muted); border-to
     </div>
   </section>
 
+  <section id="inquiry">
+    <div class="wrap" style="padding-block:0">
+      <p class="eyebrow">Project inquiry</p>
+      <h2>Send us your requirement</h2>
+      <p>Describe your project and we will reply by email.</p>
+      <form id="inquiry-form" class="inquiry" novalidate>
+        <label for="iq-name">Name</label>
+        <input id="iq-name" type="text" placeholder="Your name" autocomplete="name" required>
+        <label for="iq-email">Email</label>
+        <input id="iq-email" type="email" placeholder="you@company.com" autocomplete="email" required>
+        <label for="iq-brief">Project brief / role details</label>
+        <textarea id="iq-brief" rows="6" placeholder="Tell us about your project" required></textarea>
+        <button type="submit" class="btn btn--solid">Send inquiry</button>
+        <p id="iq-msg" class="iq-msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
   <section id="contact" class="band">
     <div class="wrap" style="padding-block:0">
       <p class="eyebrow">Contact</p>
       <h2>Let's build together</h2>
-      <p>Speak with our director about your electrical, pump room or solar requirement.</p>
+      <p>Speak with our team about your electrical, pump room or solar requirement.</p>
       <div class="contact-grid">
         <div class="addr">
-          <h3>Director</h3>
-          <p><strong style="color:var(--fg)">Surya Pratap Singh</strong></p>
-          <p class="phone">+91 9506606397<br>+91 9369750317</p>
+          <h3>Phone and email</h3>
+          <p class="phone">+91 9369750317</p>
           <p><a href="mailto:tkspengineering@yahoo.com">tkspengineering@yahoo.com</a></p>
         </div>
         <div class="addr">
@@ -327,3 +351,22 @@ footer { padding-block: 28px; font-size: 0.85rem; color: var(--muted); border-to
     <p style="margin:0">&copy; TKSP Engineering. Website: <a href="https://www.tkspengineering.com">www.tkspengineering.com</a></p>
   </footer>
 </div>
+<script>
+document.getElementById('inquiry-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var name = document.getElementById('iq-name');
+  var email = document.getElementById('iq-email');
+  var brief = document.getElementById('iq-brief');
+  var msg = document.getElementById('iq-msg');
+  var form = e.currentTarget;
+  if (!form.checkValidity()) {
+    msg.textContent = 'Please enter your name, a valid email address and your project brief.';
+    form.reportValidity();
+    return;
+  }
+  var subject = encodeURIComponent('Project inquiry from ' + name.value);
+  var body = encodeURIComponent('Name: ' + name.value + '\nEmail: ' + email.value + '\n\n' + brief.value);
+  window.location.href = 'mailto:tkspengineering@yahoo.com?subject=' + subject + '&body=' + body;
+  msg.textContent = 'Your email app should open with the inquiry ready to send.';
+});
+</script>

@@ -81,6 +81,9 @@ nav.main-nav a:hover, nav.main-nav a:focus-visible { color: var(--accent); }
 /* Gallery */
 .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .gallery .placeholder { min-height: 200px; }
+.gallery figure { margin: 0; min-width: 0; }
+.gallery img { display: block; width: 100%; max-width: 100%; height: 220px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }
+.gallery figcaption { font-size: 0.92rem; color: var(--muted); margin-top: 8px; }
 
 /* Contact */
 .contact { background: var(--surface); }
@@ -280,33 +283,20 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   </section>
 
 
-  <section id="clients" style="background:var(--surface)">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Our clients</p>
-        <h2>Trusted by industrial and commercial partners</h2>
-        <p>Client names and logos will appear here once you send them to us.</p>
-      </div>
-      <div class="logo-grid">
-        <div class="placeholder">Client logo</div>
-        <div class="placeholder">Client logo</div>
-        <div class="placeholder">Client logo</div>
-        <div class="placeholder">Client logo</div>
-      </div>
-    </div>
-  </section>
 
   <section id="projects">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Projects</p>
         <h2>Project gallery</h2>
-        <p>Project photos will appear here once you send them to us.</p>
+        <p>Selected electrical and industrial work.</p>
       </div>
       <div class="gallery">
-        <div class="placeholder">Project photo: pump room</div>
-        <div class="placeholder">Project photo: substation</div>
-        <div class="placeholder">Project photo: rooftop solar</div>
+        <figure><img src="project-1.jpg" alt="Transformers in an outdoor substation" loading="lazy"><figcaption>Transformer and substation</figcaption></figure>
+        <figure><img src="project-2.jpg" alt="Industrial hall with LED lighting" loading="lazy"><figcaption>Industrial hall lighting</figcaption></figure>
+        <figure><img src="project-3.jpg" alt="Warehouse racking aisle" loading="lazy"><figcaption>Warehouse racking</figcaption></figure>
+        <figure><img src="project-4.jpg" alt="Warehouse storage with aisle markers" loading="lazy"><figcaption>Warehouse storage</figcaption></figure>
+        <figure><img src="project-5.jpg" alt="LV switchgear panels" loading="lazy"><figcaption>LV switchgear panels</figcaption></figure>
       </div>
     </div>
   </section>

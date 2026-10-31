@@ -334,13 +334,16 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
             <p>Mulayam Nagar, Ballia, Uttar Pradesh 277001</p>
           </div>
         </div>
-        <form id="inquiry-form" class="inquiry" novalidate>
+        <form id="inquiry-form" class="inquiry" action="https://formsubmit.co/tkspengineering@yahoo.com" method="POST">
+          <input type="hidden" name="_subject" value="New project inquiry from the TKSP website">
+          <input type="hidden" name="_next" value="https://tkspengineering.github.io/tksp-engineering/">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <label for="iq-name">Name</label>
-          <input id="iq-name" type="text" placeholder="Your name" autocomplete="name" required>
+          <input id="iq-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
           <label for="iq-email">Email</label>
-          <input id="iq-email" type="email" placeholder="you@company.com" autocomplete="email" required>
+          <input id="iq-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
           <label for="iq-brief">Project brief / role details</label>
-          <textarea id="iq-brief" rows="6" placeholder="Tell us about your project" required></textarea>
+          <textarea id="iq-brief" name="message" rows="6" placeholder="Tell us about your project" required></textarea>
           <button type="submit" class="btn btn--solid">Send inquiry</button>
           <p id="iq-msg" class="iq-msg" role="status"></p>
         </form>
@@ -388,21 +391,4 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 })();
 </script>
 <script>
-document.getElementById('inquiry-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  var name = document.getElementById('iq-name');
-  var email = document.getElementById('iq-email');
-  var brief = document.getElementById('iq-brief');
-  var msg = document.getElementById('iq-msg');
-  var form = e.currentTarget;
-  if (!form.checkValidity()) {
-    msg.textContent = 'Please enter your name, a valid email address and your project brief.';
-    form.reportValidity();
-    return;
-  }
-  var subject = encodeURIComponent('Project inquiry from ' + name.value);
-  var body = encodeURIComponent('Name: ' + name.value + '\nEmail: ' + email.value + '\n\n' + brief.value);
-  window.location.href = 'mailto:tkspengineering@yahoo.com?subject=' + subject + '&body=' + body;
-  msg.textContent = 'Your email app should open with the inquiry ready to send.';
-});
 </script>
